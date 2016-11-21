@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".GhostActivity"
+    android:id="@+id/ghost">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:id="@+id/ghostText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Starting game"
+        android:id="@+id/gameStatus"
+        android:layout_below="@+id/ghostText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/btn_r"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_restart"
+        android:onClick="onStart"
+        style="@style/Widget.AppCompat.Button"
+        android:visibility="visible"
+        android:layout_alignBaseline="@+id/btn_challenge"
+        android:layout_alignBottom="@+id/btn_challenge"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/btn_s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_switch"
+        style="@style/Widget.AppCompat.Button"
+        android:visibility="visible"
+        android:onClick="handleSwitch"
+        android:layout_marginEnd="19dp"
+        android:layout_alignBaseline="@+id/btn_restart"
+        android:layout_alignBottom="@+id/btn_restart"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="@string/btn_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/btn_challenge"
+        android:onClick="handleChallenge"
+        android:visibility="visible"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_below="@+id/gameStatus"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

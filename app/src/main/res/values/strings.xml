@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ghost</string>
+    <string name="btn_c">Challenge</string>
+    <string name="btn_r">Restart</string>
+    <string name="btn_s">Switch</string>
+    <string name="action_settings">Settings</string>
+</resources>
