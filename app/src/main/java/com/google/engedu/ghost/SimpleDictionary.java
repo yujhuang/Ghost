@@ -33,26 +33,23 @@ public class SimpleDictionary implements GhostDictionary {
         if(prefix.isEmpty()) {
             return words.get(random.nextInt(words.size()));
         }else {
-            return binarySearchWord(prefix,0,words.size()-1);
+            return binarySearchWord(0,words.size()-1,prefix);
         }
     }
 
-    private String binarySearchWord(String prefix,int begin,int end) {
+    private String binarySearchWord(int begin,int end,String prefix) {
         int mid = (begin+end)/2;
         if(end > begin) {
             String temp = words.get(mid);
 
             if(temp.equals(prefix)){
                 return null;
-            }
-            else if(temp.length()>(prefix.length()-1) && temp.substring(0,prefix.length()).equals(prefix)){
+            }else if(temp.length()>(prefix.length()-1) && temp.substring(0,prefix.length()).equals(prefix)){
                 return temp;
-            }
-            else if(temp.compareTo(prefix)<0){
-                return binarySearchWord(prefix,mid+1,end);
-            }
-            else if(temp.compareTo(prefix)>0){
-                return binarySearchWord(prefix,begin,mid-1);
+            }else if(temp.compareTo(prefix)<0){
+                return binarySearchWord(mid+1,end,prefix);
+            } else if(temp.compareTo(prefix)>0){
+                return binarySearchWord(begin,mid-1,prefix);
             }
         }
         return null;
@@ -61,25 +58,25 @@ public class SimpleDictionary implements GhostDictionary {
     @Override
     public String getGoodWordStartingWith(String prefix) {
         if(prefix.isEmpty()) {
-            random = new Random();
-            int n = random.nextInt(words.size());
-            return words.get(n);
+            random = new Random();;
+            return words.get(random.nextInt(words.size()));
         }else {
-            int len = prefix.length(),size;
-            goodWords = new ArrayList<>();
-            String result = binarySearchWord(prefix,0,words.size()-1);
-            if(result == null) {
-                return null;
-            }else {
-                while(result.substring(0,len).equals(prefix)){
-                    size = result.length();
-                    if((len%2==0&&size%2==0)||(len%2!=0&&size%2!=2)) {
-                        goodWords.add(result);
+            int length = prefix.length();
+            String match = binarySearchWord(0,words.size()-1,prefix);
+            if(match != null) {
+                int size = match.length();
+                goodWords = new ArrayList<>();
+                while(match.substring(0,length).equals(prefix)){
+                    if((length%2==0&&size%2==0)||(length%2!=0&&size%2!=2)) {
+                        goodWords.add(match);
                     }
-                    result = words.get(words.indexOf(result)+1);
+                    match = words.get(words.indexOf(match)+1);
+                    size = match.length();
                 }
-                return goodWords.get(goodWords.size()-1);
+                int roll = random.nextInt(goodWords.size());
+                return goodWords.get(roll);
             }
+            return null;
         }
     }
 }
