@@ -20,7 +20,7 @@ import java.util.Random;
 public class GhostActivity extends AppCompatActivity {
     private static final String COMPUTER_TURN = "Computer's turn.";
     private static final String USER_TURN = "Your turn.";
-    private GhostDictionary dictionary;
+    private FastDictionary dictionary;
     private boolean userTurn = false,addToStart = false;
     private Random random = new Random();
     private TextView GhostText, gameStatus;
@@ -36,7 +36,7 @@ public class GhostActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
         try {
             InputStream inputStream = assetManager.open("words.txt");
-            dictionary = new SimpleDictionary(inputStream);
+            dictionary = new FastDictionary(inputStream);
         } catch (IOException e) {
             Toast toast = Toast.makeText(this, "Could not load dictionary", Toast.LENGTH_LONG);
             toast.show();
@@ -120,7 +120,7 @@ public class GhostActivity extends AppCompatActivity {
             swi.setEnabled(false);
             chal.setEnabled(false);
         }else{
-            String word= dictionary.getGoodWordStartingWith(currentText);
+            String word= dictionary.getAnyWordStartingWith(currentText);
             if(word!=null){
                 Toast.makeText(GhostActivity.this,"Current ghost text includes prefix "+word,Toast.LENGTH_SHORT).show();
                 swi.setEnabled(false);
@@ -159,7 +159,7 @@ public class GhostActivity extends AppCompatActivity {
                  swi.setEnabled(false);
                  chal.setEnabled(false);
              } else {
-                 String roll = dictionary.getGoodWordStartingWith(currentText);
+                 String roll = dictionary.getAnyWordStartingWith(currentText);
                  if(roll == null) {
                      Toast.makeText(GhostActivity.this,currentText + " is not a prefix!",Toast.LENGTH_SHORT).show();
                      gameStatus.setText("Computer Wins!");
