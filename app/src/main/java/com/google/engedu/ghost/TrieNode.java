@@ -14,17 +14,15 @@ public class TrieNode {
     }
 
     public void add(String s) {
-        int index = 0,length = s.length();
+        int index = 0;
+        int length = s.length();
         TrieNode node = this;
-        for(;index < length;index++)
-        {
+        for(;index < length;index++) {
             HashMap hash = node.children;
             String key = String.valueOf(s.charAt(index));
-            if(hash.containsKey(key))
-            {
+            if(hash.containsKey(key)) {
                 node=(TrieNode)hash.get(key);
-            }else
-            {
+            }else {
                 TrieNode nhash = new TrieNode();
                 hash.put(key,nhash);
                 node = nhash;       //check for key contained or not
@@ -42,12 +40,10 @@ public class TrieNode {
         HashMap hash;
         int length = s.length();
         int index = 0;
-        for(;index < length; index++)
-        {
+        for(;index < length; index++)  {
             hash = node.children;
             String key = String.valueOf(s.charAt(index));
-            if(hash.containsKey(key))
-            {
+            if(hash.containsKey(key)) {
                 node = (TrieNode)hash.get(key);
             }else {
                 return false;
@@ -67,21 +63,17 @@ public class TrieNode {
         HashMap hash;
         int length = s.length();
         int index = 0;
-        for (;index < length; index++)
-        {
+        for (;index < length; index++) {
             hash = node.children;
             String key = String.valueOf(s.charAt(index));
-            if(hash.containsKey(key))
-            {
+            if(hash.containsKey(key)){
                 node = (TrieNode)hash.get(key);
-            }
-            else {
+            }else {
                 return null;
             }
         }
         String randomKey = null;
-        while(node != null)
-        {
+        while(node != null) {
             hash = node.children;
             Random random = new Random();
             ArrayList<String> keys = new ArrayList<String>(hash.keySet());
